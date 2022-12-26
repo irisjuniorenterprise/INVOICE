@@ -7,6 +7,8 @@ use App\Entity\Prospect;
 use App\Form\ProspectForm;
 use App\Repository\ProspectRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -54,4 +56,18 @@ class ProspectController extends AbstractController
         ]);
     }
 
+    /**
+     * @throws OptimisticLockException
+     * @throws ORMException
+     */
+    #[Route('/prospect/delete/{id}', name: 'app_prospect_delete')]
+    public function delete(ProspectRepository $prospectRepository,$id): Response
+    {
+        $prospect = $prospectRepository->find($id);
+        $prospectRepository->remove($prospect);
+        return $this->redirectToRoute('app_prospect');
+
+
+
+    }
 }
