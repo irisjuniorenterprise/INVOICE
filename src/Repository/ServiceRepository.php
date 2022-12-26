@@ -50,8 +50,8 @@ class ServiceRepository extends ServiceEntityRepository
     // /**
     //  * @return Service[] Returns an array of Service objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+   /* public function findByExampleField($value)
     {
         return $this->createQueryBuilder('s')
             ->andWhere('s.exampleField = :val')
@@ -62,7 +62,8 @@ class ServiceRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+   */
+
 
     /*
     public function findOneBySomeField($value): ?Service
