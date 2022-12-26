@@ -48,7 +48,7 @@ class ProspectRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Prospect[] Returns an array of Prospect objects
+    //  * @return prospect[] Returns an array of prospect objects
     //  */
     /*
     public function findByExampleField($value)
@@ -65,7 +65,7 @@ class ProspectRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Prospect
+    public function findOneBySomeField($value): ?prospect
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')

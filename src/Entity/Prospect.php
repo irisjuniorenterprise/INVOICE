@@ -28,7 +28,7 @@ class Prospect
     private ?string $phone;
 
     #[ORM\OneToMany(mappedBy: 'prospect', targetEntity: PriceProposal::class)]
-    private ArrayCollection $priceProposals;
+    private  $priceProposals;
 
     public function __construct()
     {
