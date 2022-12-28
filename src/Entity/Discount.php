@@ -22,7 +22,7 @@ class Discount
     private ?float $rate;
 
     #[ORM\OneToMany(mappedBy: 'discount', targetEntity: PriceProposal::class)]
-    private ArrayCollection $priceProposals;
+    private  $priceProposals;
 
     public function __construct()
     {
