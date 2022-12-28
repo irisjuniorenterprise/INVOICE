@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BlameController!{% endblock %}
+
+{% block body %}
+
+
+    <div>
+        {{ form_start(discountForm, {'attr':{'action':path('app_discount_update',{id:idDiscount})}}) }}
+        {{ form_widget(discountForm) }}
+
+        <button type="submit" class="btn btn-primary data-submit me-1">Submit</button>
+        {{ form_end(discountForm) }}
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+    {{ include('_footer.html.twig') }}
+
+
+
+
+
+{% endblock %}

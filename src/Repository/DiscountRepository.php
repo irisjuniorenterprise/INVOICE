@@ -75,7 +75,5 @@ class DiscountRepository extends ServiceEntityRepository
         ;
     }
     */
-    public function persist($discount)
-    {
-    }
+
 }
