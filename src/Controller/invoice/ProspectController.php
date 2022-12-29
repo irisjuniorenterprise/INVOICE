@@ -67,7 +67,38 @@ class ProspectController extends AbstractController
         $prospectRepository->remove($prospect);
         return $this->redirectToRoute('app_prospect');
 
-
-
     }
+
+    /**
+     * @throws OptimisticLockException
+     * @throws ORMException
+     */
+    #[Route('/prospect/edit/{id}', name: 'app_prospect_edit')]
+public function edit (ProspectRepository $prospectRepository,Prospect $prospect, Request $request): Response
+{
+
+    $form = $this->createForm(ProspectForm::class,$prospect);
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()){
+
+       $prospectRepository->add($prospect);
+       return $this->redirectToRoute( 'app_prospect');
+        }
+
+
+
+
+
+
+
+    return $this->render('prospect/edit.html.twig',[
+        'prospect'=>$prospect,
+        'form'=>$form->createView()
+    ]);
+
+
+
+}
+
 }
