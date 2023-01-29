@@ -33,10 +33,10 @@ class PriceProposal
     private ?Prospect $prospect;
 
     #[ORM\ManyToMany(targetEntity: Service::class, inversedBy: 'priceProposals')]
-    private ArrayCollection $service;
+    private $service;
 
     #[ORM\OneToMany(mappedBy: 'priceProposal', targetEntity: PriceProposalFeature::class)]
-    private ArrayCollection $priceProposalFeature;
+    private  $priceProposalFeature;
 
     public function __construct()
     {
