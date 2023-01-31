@@ -25,7 +25,7 @@ class PriceProposal
     private ?string $currency;
 
     #[ORM\ManyToOne(targetEntity: Discount::class, inversedBy: 'priceProposals')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Discount $discount;
 
     #[ORM\ManyToOne(targetEntity: Prospect::class, inversedBy: 'priceProposals')]

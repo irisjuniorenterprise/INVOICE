@@ -77,10 +77,9 @@
                                         <thead>
                                         <tr>
                                             <th></th>
-                                            <th>Discount id </th>
-                                            <th>Prospect id </th>
+                                            <th>Discount </th>
+                                            <th>Prospect</th>
                                             <th>Object </th>
-                                            <th>Creation_date</th>
                                             <th>Currency</th>
                                             <th>Actions</th>
 
@@ -90,14 +89,16 @@
                                         </thead>
                                         <tbody>
 
+
+                                        {% for priceProposal in priceProposals %}
                                             <tr>
 
                                                 <td></td>
-                                                <td>abc</td>
-                                                <td>fh</td>
-                                                <td>ghgt</td>
-                                                <td>trhsrt</td>
-                                                <td>hdt</td>
+                                                <td>{% if priceProposal.discount %}{{ priceProposal.discount.name }}{% endif %}</td>
+                                                <td>{{ priceProposal.Prospect.name }}</td>
+                                                <td>{{ priceProposal.Object }}</td>
+                                                <td>{{ priceProposal.Currency }}</td>
+
 
 
                                                 <td>
@@ -111,7 +112,7 @@
                                                                 <i data-feather="trash" class="me-50"></i>
                                                                 <span>Delete</span>
                                                             </a>
-                                                            <a class="dropdown-item" href="">
+                                                            <a class="dropdown-item" href="{{ path('app_price_proposal_edit',{'id':priceProposal.id}) }}">
                                                                 <i data-feather="trash" class="me-50"></i>
                                                                 <span>Edit</span>
                                                             </a>
@@ -122,7 +123,7 @@
                                             </tr>
 
 
-
+                                        {% endfor %}
                                     </table>
                                 </div>
                             </div>

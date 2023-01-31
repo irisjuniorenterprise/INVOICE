@@ -25,11 +25,12 @@ class PriceProposalController extends AbstractController
         ]);
     }
 
-    #[Route('/priceProposal/new', name: 'priceProposal_new',methods: "post")]
-    public function newPriceProposal( PriceProposalRepository $priceProposalRepository, Request $request)
+
+    #[Route('/priceProposal/new', name: 'priceProposal_new', methods: "post")]
+    public function newPriceProposal(PriceProposalRepository $priceProposalRepository, Request $request)
     {
 
-      $form = $this->createForm(PriceProposalType::class);
+        $form = $this->createForm(PriceProposalType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -48,6 +49,29 @@ class PriceProposalController extends AbstractController
 
         }
         return $this->redirectToRoute('app_price_proposal');
+
+
+    }
+
+
+    #[Route('/priceProposal/edit/{id}', name: 'app_price_proposal_edit')]
+    public function edit(PriceProposalRepository $priceProposalRepository, PriceProposal $priceProposal, Request $request): Response
+    {
+
+        $form = $this->createForm(PriceProposalType::class,$priceProposal);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $priceProposalRepository->add($priceProposal, true);
+            return $this->redirectToRoute('app_price_proposal');
+        }
+
+
+        return $this->render('price_proposal/edit.html.twig', [
+
+            'form' => $form->createView()
+        ]);
 
 
     }

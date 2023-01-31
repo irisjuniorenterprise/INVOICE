@@ -16,12 +16,15 @@ class PriceProposalType extends AbstractType
             ->add('discount',EntityType::class, [
                 // looks for choices from this entity
                 'class' => Discount::class,
+                'placeholder'=>'choisir un discount',
+                'required'=>false,
 
                 // uses the User.username property as the visible option string
                 'choice_label' => 'name',])
             ->add('prospect',EntityType::class, [
                 // looks for choices from this entity
                 'class' => Prospect::class,
+                'placeholder'=>'choisir un prospect',
 
                 // uses the User.username property as the visible option string
                 'choice_label' => 'name',])
