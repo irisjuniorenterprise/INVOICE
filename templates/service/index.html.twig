@@ -99,7 +99,12 @@
                                             <td>{{ service.id }}</td>
                                             <td>{{ service.department.name }}</td>
                                             <td>{{ service.name }}</td>
-                                            <td><a href="{{ path("app_service_delete" ,{"id":service.id}) }}">delete</a></td>                                        <tr>
+
+                                            <td><a href="{{ path("app_service_delete" ,{"id":service.id}) }}">delete</a> <a href="{{ path('app_service_update', {
+                                                    id: service.id
+                                                }) }}">
+                                                    <span class="fa fa-pencil"></span></a></td>                                        <tr>
+
                                             {% endfor %}
 
 
@@ -119,7 +124,8 @@
                                                     </div>
                                                 </div>
 
-                                        </tr>
+
+
 
                                     <tfoot>
                                     <tr>
