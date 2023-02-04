@@ -1,0 +1,12 @@
+<div class="container">
+    {{ form_start(priceProposalForm,{'attr':{ 'action':path('priceProposalFeature_new')}}) }}
+    {{ form_start(priceProposalFeatureForm,{'attr':{ 'action':path('priceProposalFeature_new')}}) }}
+
+    {{ form_widget(priceProposalForm) }}
+    {{ form_widget(priceProposalFeatureForm) }}
+
+    <input type="submit" style="display :inline! important ; " class="btn btn-primary data-submit me-1">
+    {{ form_end(priceProposalForm) }}
+    {{ form_end(priceProposalFeatureForm) }}
+
+</div>
