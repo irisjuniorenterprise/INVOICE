@@ -36,52 +36,35 @@ class PriceProposalFeatureController extends AbstractController
      * @throws ORMException
      */
     #[Route('/price/proposal/feature/new', name: 'priceProposalFeature_new')]
-    public function new (PriceProposalFeatureRepository $priceProposalFeatureRepository, Request $request ,PriceProposalRepository $priceProposalRepository):Response
+    public function new (PriceProposalFeatureRepository $priceProposalFeatureRepository, Request $request,priceProposalRepository $priceProposalRepository ):Response
     {
-
-        $priceProposalForm = $this->createForm(PriceProposalType::class);
-        $priceProposalFeatureForm = $this->createForm(PriceProposalFeatureType::class);
-
-        $priceProposalForm->handleRequest($request);
+        $form=$this->createForm(priceProposalType::class);
+        $priceProposalFeatureForm =$this->createForm(priceProposalFeatureType::class);
+        $form->handleRequest($request);
         $priceProposalFeatureForm->handleRequest($request);
-
-        if ($priceProposalFeatureForm->isSubmitted() && $priceProposalFeatureForm->isValid()) {
-
-
-            $data = $priceProposalForm->getData();
+        if ($form->isSubmitted() && $form->isValid() && $priceProposalFeatureForm->isSubmitted()&& $priceProposalFeatureForm->isValid())
+        {
+            $data = $form->getData();
             $data = $priceProposalFeatureForm->getData();
 
             $priceProposal = new PriceProposal();
             $priceProposalFeature = new PriceProposalFeature();
-            $priceProposal->setDiscount($data["discount"]);
 
 
-
-            $priceProposalRepository->add($priceProposal, true);
-            $priceProposalFeature->setDescription($data["Description"]);
-            $priceProposalFeature->setQty($data["Qty"]);
-            $priceProposalFeature->setPrice($data["price"]);
-            $priceProposalFeature->setDiscount($data["Discount"]);
+            $priceProposalFeature = new PriceProposalFeature();
+            $priceProposalFeature->setDiscount($data->getDiscount());
+            $priceProposalFeature->setDescription($data->getDescription());
+            $priceProposalFeature->setQty($data->getQty());
+            $priceProposalFeature->setPrice($data->Price());
             $priceProposalFeatureRepository->add($priceProposalFeature);
 
 
+        }
             return $this->redirectToRoute('app_price_proposal_feature');
 
 
         }
-        return $this->redirectToRoute('app_price_proposal_feature');
-    }
-    #[Route('/price/proposal/feature/add', name: 'app_price_proposal_feature_add')]
-    public function add(): Response
-    {
-        $priceProposalForm = $this->createForm(PriceProposalType::class);
-        $priceProposalFeatureForm = $this->createForm(PriceProposalFeatureType::class);
-
-        return $this->renderForm('price_proposal_feature/new.html.twig', [
-            'priceProposalForm ' =>$priceProposalForm ,
-            'priceProposalFeatureForm'=> $priceProposalFeatureForm
 
 
-        ]);
-    }
+
 }
