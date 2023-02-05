@@ -84,4 +84,32 @@ class PriceProposalFeatureController extends AbstractController
 
         ]);
     }
+    #[Route('/priceProposalFeature/edit/{id}', name: 'app_price_proposal_feature_edit')]
+    public function edit(PriceProposalFeatureRepository $priceProposalFeatureRepository, PriceProposalFeature $priceProposalFeature, Request $request): Response
+    {
+
+        $form = $this->createForm(PriceProposalFeatureType::class,$priceProposalFeature);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $priceProposalFeatureRepository->add($priceProposalFeature, true);
+            return $this->redirectToRoute('app_price_proposal_feature');
+        }
+
+
+        return $this->render('price_proposal_feature/edit.html.twig', [
+
+            'form' => $form->createView()
+        ]);
+
+
+    }
+    #[Route('/priceProposalFeature/delete/{id}', name: 'price_proposal_feature_delete')]
+    public function delete(PriceProposalFeature $priceProposalFeature, PriceProposalFeatureRepository $priceProposalFeatureRepository): response
+    {
+        $priceProposalFeatureRepository->remove($priceProposalFeature);
+
+        return $this->redirectToRoute('app_price_proposal_feature');
+    }
 }
