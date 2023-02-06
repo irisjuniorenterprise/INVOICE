@@ -2,6 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\PriceProposal;
+use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 class PriceProposalFeatureType  extends AbstractType
@@ -12,8 +15,8 @@ class PriceProposalFeatureType  extends AbstractType
             ->add('description')
             ->add('qty')
             ->add('discount')
-            ->add('price');
-
+            ->add('price')
+           ->add('priceProposal',EntityType::class,["class"=>PriceProposal::class]);
     }
 
 }

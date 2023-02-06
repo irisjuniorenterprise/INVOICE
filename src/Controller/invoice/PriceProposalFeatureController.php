@@ -42,21 +42,22 @@ class PriceProposalFeatureController extends AbstractController
         $priceProposalFeatureForm =$this->createForm(priceProposalFeatureType::class);
         $form->handleRequest($request);
         $priceProposalFeatureForm->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid() && $priceProposalFeatureForm->isSubmitted()&& $priceProposalFeatureForm->isValid())
+        if ($priceProposalFeatureForm->isSubmitted()&& $priceProposalFeatureForm->isValid())
         {
-            $data = $form->getData();
+
+
             $data = $priceProposalFeatureForm->getData();
 
-            $priceProposal = new PriceProposal();
-            $priceProposalFeature = new PriceProposalFeature();
 
 
             $priceProposalFeature = new PriceProposalFeature();
-            $priceProposalFeature->setDiscount($data->getDiscount());
-            $priceProposalFeature->setDescription($data->getDescription());
-            $priceProposalFeature->setQty($data->getQty());
-            $priceProposalFeature->setPrice($data->Price());
-            $priceProposalFeatureRepository->add($priceProposalFeature);
+            $priceProposalFeature->setPriceProposal($data["priceProposal"]);
+            $priceProposalFeature->setDiscount($data["discount"]);
+            $priceProposalFeature->setDescription($data["description"]);
+            $priceProposalFeature->setQty($data["qty"]);
+            $priceProposalFeature->setPrice($data["price"]);
+            $priceProposalFeatureRepository->add($priceProposalFeature,true);
+            return $this->redirectToRoute('app_price_proposal_feature');
 
 
         }
