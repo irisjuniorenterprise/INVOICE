@@ -75,4 +75,12 @@ class PriceProposalController extends AbstractController
 
 
     }
+    #[Route('/priceProposal/delete/{id}', name: 'app_price_proposal_delete')]
+    public function delete(PriceProposalRepository $priceProposalRepository,PriceProposal $priceProposal,$id): Response
+    {
+        $prospect = $priceProposalRepository->find($id);
+        $priceProposalRepository->remove($priceProposal);
+        return $this->redirectToRoute('app_price_proposal');
+
+    }
 }
