@@ -93,8 +93,8 @@ class PriceProposalFeatureController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $priceProposalFeatureRepository->add($priceProposalFeature, true);
-            return $this->redirectToRoute('app_price_proposal_feature');
+             $priceProposalFeatureRepository->add($priceProposalFeature, true);
+             return $this->redirectToRoute('app_price_proposal_feature');
         }
 
 
